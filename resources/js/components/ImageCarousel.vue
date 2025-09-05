@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
-
+// interface and images
 interface CarouselImage {
   src: string;
   alt: string;
@@ -12,36 +12,33 @@ interface CarouselImage {
 
 const carouselImages: CarouselImage[] = [
   {
-    src: '/placeholder.svg?height=600&width=500',
-    alt: 'Luxury acrylic nails with gold foil',
-    title: 'Gold Foil Elegance',
-    description: 'Premium acrylic with 24k gold accents',
+    src: '/images/image1.jpeg',
+    alt: 'Nail art design 1',
+    title: 'Elegant Nail Design',
+    description: 'A beautiful and elegant nail art design.',
   },
   {
-    src: '/placeholder.svg?height=600&width=500',
-    alt: 'French manicure with crystals',
-    title: 'Crystal French',
-    description: 'Classic French with Swarovski crystals',
+    src: '/images/image2.jpeg',
+    alt: 'Nail art design 2',
+    title: 'Modern Nail Art',
+    description: 'A modern and stylish nail art design.',
+
   },
   {
-    src: '/placeholder.svg?height=600&width=500',
-    alt: 'Ombre nails with glitter',
-    title: 'Ombre Perfection',
-    description: 'Seamless color transition with sparkle',
+    src: '/images/image3.jpeg',
+    alt: 'Nail art design 3',
+    title: 'Floral Nail Art',
+    description: 'A floral nail art design perfect for spring.',
   },
   {
-    src: '/placeholder.svg?height=600&width=500',
-    alt: '3D floral nail art',
-    title: '3D Floral Art',
-    description: 'Hand-painted florals with dimension',
+    src: '/images/image4.jpeg',
+    alt: 'Nail art design 4',
+    title: 'Glittery Nail Design',
+    description: 'A glittery and glamorous nail art design.',
   },
-  {
-    src: '/placeholder.svg?height=600&width=500',
-    alt: 'Chrome mirror nails',
-    title: 'Chrome Luxury',
-    description: 'Mirror finish chrome perfection',
-  },
+  
 ];
+
 
 const currentIndex = ref(0);
 const isAutoPlaying = ref(true);
@@ -57,7 +54,7 @@ const translateX = computed(() => {
 
 const startAutoPlay = () => {
   if (!isAutoPlaying.value) return;
-  
+
   intervalId = window.setInterval(() => {
     currentIndex.value = currentIndex.value === carouselImages.length - 1 ? 0 : currentIndex.value + 1;
   }, 4000);
@@ -108,16 +105,10 @@ onUnmounted(() => {
         <div
           v-for="(image, index) in carouselImages"
           :key="index"
-          class="w-full h-full flex-shrink-0 relative bg-gradient-to-br from-rose-100 to-pink-100"
+          class="w-full h-full flex-shrink-0 relative bg-gradient-to-br from-rose-100 to-pink-100 "
         >
-          <!-- Placeholder for actual image -->
-          <div class="w-full h-full flex items-center justify-center text-gray-400">
-            <div class="text-center">
-              <div class="text-6xl mb-4">💅</div>
-              <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-700">{{ image.title }}</h3>
-              <p class="text-sm md:text-base text-gray-600">{{ image.description }}</p>
-            </div>
-          </div>
+          <!-- Actual Image -->
+          <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
           <!-- Image Info Overlay -->
